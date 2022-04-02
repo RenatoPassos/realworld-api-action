@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const newman = require('newman');
+const {setFailed} = require("@actions/core");
 
 const username = core.getInput('username') || `${github.context.issue.owner}-${new Date().toString()}`;
 const email = core.getInput('email') || `${username}@mail.com`;
@@ -19,10 +20,10 @@ newman.run({
     reporters: 'cli'
 }).on('done', (err, summary) => {
     if (err || summary.error) {
-        console.error('collection run encountered an error.');
-        // core.setFailed(err)
-    }
-    else {
-        console.log('collection run completed.', summary);
+        core.setFailed('collection run encountered an error.')
+    } else if (summary.failures.length) {
+        core.setFailed( `${summary.failures.length} failure${summary.failures.length > 1 ? 's' : ''}.`);
+    } else {
+        console.log('collection run completed.');
     }
 });
