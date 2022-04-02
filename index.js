@@ -6,14 +6,15 @@ const username = core.getInput('username') || `${github.context.issue.owner}-${n
 const email = core.getInput('email') || `${username}@mail.com`;
 const password = core.getInput('password') || (Math.random() * 12).toString(36)
 
+
 newman.run({
     delayRequest: 500,
-    globalVar: {
-        APIURL: core.getInput('url'),
-        USERNAME: username,
-        EMAIL: email,
-        PASSWORD: password
-    },
+    globalVar: [
+        {key: 'APIURL', value: core.getInput('url')},
+        {key: 'USERNAME', value: username},
+        {key: 'EMAIL', value: email},
+        {key: 'PASSWORD', value: password},
+    ],
     collection: require('./postman-collection.json'),
     reporters: 'cli'
 },  (err) =>  {
