@@ -12,7 +12,7 @@ newman.run({
     globalVar: [
         {key: 'APIURL', value: core.getInput('url')},
         {key: 'USERNAME', value: username},
-        {key: 'EMAIL', value: email},
+        {key: 'EMAIL', value: 'foo@mail.com'},
         {key: 'PASSWORD', value: password},
     ],
     collection: require('./postman-collection.json'),
