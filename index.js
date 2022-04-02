@@ -19,6 +19,7 @@ newman.run({
     collection: require('./postman-collection.json'),
     reporters: 'cli'
 }).on('done', (err, summary) => {
+    console.log('summary', summary);
     if (err || summary.error) {
         core.setFailed('collection run encountered an error.')
     } else if (summary.failures && summary.failures.length) {
