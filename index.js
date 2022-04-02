@@ -19,6 +19,6 @@ newman.run({
     reporters: 'json'
 },  (err) =>  {
     console.log('done');
-    console.log('error', errr);
+    console.log('error', err);
     if (err) { core.setFailed(err) }
 });
