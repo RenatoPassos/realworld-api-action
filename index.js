@@ -16,7 +16,9 @@ newman.run({
         {key: 'PASSWORD', value: password},
     ],
     collection: require('./postman-collection.json'),
-    reporters: 'cli'
+    reporters: 'json'
 },  (err) =>  {
+    console.log('done');
+    console.log('error', errr);
     if (err) { core.setFailed(err) }
 });
