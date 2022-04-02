@@ -23,6 +23,6 @@ newman.run({
         // core.setFailed(err)
     }
     else {
-        console.log('collection run completed.');
+        console.log('collection run completed.', summary);
     }
 });
