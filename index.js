@@ -21,7 +21,7 @@ newman.run({
 }).on('done', (err, summary) => {
     if (err || summary.error) {
         core.setFailed('collection run encountered an error.')
-    } else if (summary.failures.length) {
+    } else if (summary.failures && summary.failures.length) {
         core.setFailed( `${summary.failures.length} failure${summary.failures.length > 1 ? 's' : ''}.`);
     } else {
         console.log('collection run completed.');
