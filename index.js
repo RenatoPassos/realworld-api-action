@@ -9,10 +9,10 @@ const password = core.getInput('password') || (Math.random() * 12).toString(36)
 newman.run({
     delayRequest: 500,
     globals: {
-        url: core.getInput('url'),
-        username,
-        email,
-        password
+        APIURL: core.getInput('url'),
+        USERNAME: username,
+        EMAIL: email,
+        PASSWORD: password
     },
     collection: require('./postman-collection.json'),
     reporters: 'cli'
