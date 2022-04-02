@@ -17,8 +17,12 @@ newman.run({
     ],
     collection: require('./postman-collection.json'),
     reporters: 'cli'
-},  (err) =>  {
-    console.log('done');
-    console.log('error', err);
-    if (err) { core.setFailed(err) }
+}).on('done', (err, summary) => {
+    if (err || summary.error) {
+        console.error('collection run encountered an error.');
+        // core.setFailed(err)
+    }
+    else {
+        console.log('collection run completed.');
+    }
 });
