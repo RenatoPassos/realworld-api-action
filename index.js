@@ -1,12 +1,17 @@
 const core = require('@actions/core');
+const exec = require('@actions/exec');
 const github = require('@actions/github');
 const newman = require('newman');
-const {setFailed} = require("@actions/core");
 
 const username = core.getInput('username') || `${github.context.issue.owner}-${new Date().toString()}`;
 const email = core.getInput('email') || `${username}@mail.com`;
-const password = core.getInput('password') || (Math.random() * 12).toString(36)
+const password = core.getInput('password') || (Math.random() * 12).toString(36);
 
+const startCommand = core.getInput('start');
+
+if (startCommand) {
+    await exec.exec(startCommand);
+}
 
 newman.run({
     delayRequest: 500,

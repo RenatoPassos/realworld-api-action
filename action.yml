@@ -13,6 +13,9 @@ inputs:
   password:
     description: 'password used for the tests'
     required: false
+  start:
+    description: 'command to run the project'
+    required: false
 runs:
   using: 'node16'
   main: 'index.js'
