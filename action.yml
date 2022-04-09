@@ -1,6 +1,9 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
+  github-token:
+    description: 'account github token'
+    required: true
   url:
     description: 'url of the api you are willing to test'
     required: true

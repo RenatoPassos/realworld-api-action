@@ -40,6 +40,22 @@ execCommand().then(() => {
         if (err || summary.run.error) {
             core.setFailed('collection run encountered an error.')
         } else if (summary.run.failures.length) {
+            const githubToken = core.getInput('github_token');
+            const octokit = github.getOctokit(githubToken);
+            const body = `
+            **${summary.run.failures.length} failure${summary.run.failures.length > 1 ? 's' : ''}.**
+            
+            ${summary.run.failures.map(failure => {
+                return 'foo'
+            })}
+            `;
+
+            octokit.rest.issues.createComment({
+                owner: github.context.repo.owner,
+                repo: github.context.repo.repo,
+                issue_number: github.context.issue.number,
+                body: body
+            });
             core.setFailed(`${summary.run.failures.length} failure${summary.run.failures.length > 1 ? 's' : ''}.`);
         } else {
             console.log('collection run completed.');
