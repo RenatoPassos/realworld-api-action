@@ -5,6 +5,7 @@ const newman = require('newman');
 const quote = require('quote')
 const cliParser = require('argument-vector')();
 const io = require('@actions/io');
+const {debug} = require("@actions/core");
 
 const username = core.getInput('username') || `${github.context.issue.owner}-${new Date().toString()}`;
 const email = core.getInput('email') || `${username}@mail.com`;
@@ -45,6 +46,6 @@ execCommand().then(() => {
         }
         process.exit(0);
     });
-}).catch(() => process.exit(1));
+}).catch((e) => debug('error', e));
 
 
