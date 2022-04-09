@@ -43,7 +43,7 @@ execCommand().then(() => {
             const githubToken = core.getInput('github_token');
             const octokit = github.getOctokit(githubToken);
 
-            console.log(summary);
+            console.log(summary.run.failures[0]);
             const body = `
             ${summary.run.failures.length} failure${summary.run.failures.length > 1 ? 's' : ''}.
             
