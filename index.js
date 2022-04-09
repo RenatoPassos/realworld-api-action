@@ -43,9 +43,10 @@ execCommand().then(() => {
             core.setFailed(`${summary.run.failures.length} failure${summary.run.failures.length > 1 ? 's' : ''}.`);
         } else {
             console.log('collection run completed.');
+            process.exit(0);
         }
-        process.exit(0);
+        process.exit(1);
     });
-}).catch((e) => debug('error', e));
+});
 
 
