@@ -1,7 +1,7 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  github-token:
+  github_token:
     description: 'account github token'
     required: true
   url:
