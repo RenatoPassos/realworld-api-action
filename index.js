@@ -36,7 +36,7 @@ execCommand().then(() => {
         ],
         collection: require('./postman-collection.json'),
         reporters: 'cli'
-    }).on('done', (err, summary) => {
+    }).on('done', async (err, summary) => {
         if (err || summary.run.error) {
             core.setFailed('collection run encountered an error.')
         } else if (summary.run.failures.length) {
@@ -50,7 +50,7 @@ execCommand().then(() => {
             })}
             `;
 
-            octokit.rest.issues.createComment({
+            await octokit.rest.issues.createComment({
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
                 issue_number: github.context.issue.number,
