@@ -24,6 +24,7 @@ const execCommand = () => {
 }
 
 execCommand().then(() => {
+    debug(`newManRun`)
     newman.run({
         delayRequest: 500,
         globalVar: [
@@ -42,8 +43,8 @@ execCommand().then(() => {
         } else {
             console.log('collection run completed.');
         }
+        process.exit(0);
     });
-    process.exit(0);
 }).catch(() => process.exit(1));
 
 
